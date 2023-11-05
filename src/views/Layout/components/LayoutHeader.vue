@@ -1,5 +1,5 @@
 <script setup lang="ts">
-
+import {useCategoriesStore} from "@/stores/categories";
 </script>
 
 <template>
@@ -10,16 +10,10 @@
       </h1>
       <ul class="app-header-nav">
         <li class="home">
-          <RouterLink to="/">首页</RouterLink>
+          <RouterLink to="/" >首页</RouterLink>
         </li>
-        <li>
-          <RouterLink to="/">居家</RouterLink>
-        </li>
-        <li>
-          <RouterLink to="/">美食</RouterLink>
-        </li>
-        <li>
-          <RouterLink to="/">服饰</RouterLink>
+        <li v-for="category in useCategoriesStore().categories" :key="category.id">
+          <RouterLink :to="`/category/${category.id}`" active-class="active">{{ category.name }}</RouterLink>
         </li>
       </ul>
       <div class="search">
